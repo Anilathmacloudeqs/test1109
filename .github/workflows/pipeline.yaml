@@ -37,7 +37,7 @@ jobs:
 
       - name: Merging repo
         run: |
-          pwsh -File ./.github/workflows/mergerepo.ps1 -SourceTag ${{ inputs.Tag }}
+          pwsh -File ./.github/workflows/mergerepo1.ps1 -SourceTag ${{ inputs.Tag }}
         shell: pwsh
      
       - name: printING commit id  
