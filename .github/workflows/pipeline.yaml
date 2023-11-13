@@ -7,7 +7,7 @@ on:
         description: Enter tag name.
         required: true
         type: string
-
+        
 env:
   COMMIT_ID: ${{ github.sha }}
 
@@ -16,41 +16,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: GetCommitId
-        id: get_commit
         run: |
-          commit_id=$(pwsh -File ./.github/workflows/getcommitid.ps1 -SourceTag ${{ inputs.Tag }})
-          echo "COMMIT_ID=$commit_id" >> $GITHUB_ENV
-
+          pwsh -File ./.github/workflows/getcommitid.ps1 -SourceTag ${{ inputs.Tag }}
+        #echo "COMMIT_ID=$commitid" >> $GITHUB_ENV
+        shell: pwsh
+     
       - name: print commit id
-        run: echo "COMMIT ID IS ${{ steps.get_commit.outputs.commit_id }}"
-
-      - name: Upload commit id artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: commit-id-artifact
-          path: ${{ github.workspace }}
+        run: echo "COMMIT ID IS ${{ env.COMMIT_ID }}"
 
   prod:
     runs-on: ubuntu-latest
     needs: release
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Download commit id artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: commit-id-artifact
-          path: ./test1109/.github/workflows
-
+      - uses: actions/checkout@v3
       - name: Merging repo
         run: |
-          cp ./test1109/.github/workflows/commit-id ./.github/workflows/
-
-      - name: Printing commit id  
+          pwsh -File ./.github/workflows/getcommitid.ps1 -SourceTag ${{ inputs.Tag }}
+        shell: pwsh
+     
+      - name: printING commit id  
         run: echo "COMMIT ID IS ${{ env.COMMIT_ID }}"
