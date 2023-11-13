@@ -37,19 +37,9 @@ jobs:
 
       - name: Merging repo
         run: |
-          pwsh -File ./.github/workflows/mergerepo.ps1 -SourceTag ${{ inputs.Tag }} ${{ vars.TargetBranch_PROD}} ${{ vars.SVC_REPOS_EMAIL}} ${{ vars.SVC_REPOS_USERNAME}}
+          pwsh -File ./.github/workflows/mergerepo.ps1 -SourceTag ${{ inputs.Tag }} -TargetBranch prod -svc_repos_email anilathma@cloudeqs.com -svc_repos_username Anilathmacloudeqs
         shell: pwsh
      
       - name: printING commit id  
         run: echo "COMMIT ID IS ${{ env.COMMIT_ID }}"
 
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.10'
-          
-      - name: Install dependencies
-        run: pip install requests==2.28.1
-        
-      - name: Run Python script
-        run: python ./.github/workflows/hello2.py 
