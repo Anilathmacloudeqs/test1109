@@ -22,8 +22,8 @@ jobs:
       - name: GetCommitId
         id: get_commit
         run: |
-          pwsh -File ./.github/workflows/getcommitid.ps1 -SourceTag ${{ inputs.Tag }}
-        shell: pwsh
+          commit_id=$(pwsh -File ./.github/workflows/getcommitid.ps1 -SourceTag ${{ inputs.Tag }})
+          echo "COMMIT_ID=$commit_id" >> $GITHUB_ENV
 
       - name: print commit id
         run: echo "COMMIT ID IS ${{ steps.get_commit.outputs.commit_id }}"
@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: commit-id-artifact
-          path: ${{ steps.get_commit.outputs.commit_id }}
+          path: ${{ github.workspace }}
 
   prod:
     runs-on: ubuntu-latest
