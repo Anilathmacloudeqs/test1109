@@ -42,4 +42,3 @@ jobs:
      
       - name: printING commit id  
         run: echo "COMMIT ID IS ${{ env.COMMIT_ID }}"
-
