@@ -1,15 +1,8 @@
-<#
- Description: PowerShell Script to get commit id for specific tag and set it to pipeline variable
- Author: Paramjit Singh
-#>
-
-
 param (
-    # Name of the Source Tag
     $SourceTag
 )
-git config --global user.name 'Paramjit' 
-git config --global user.email 'params@cloudeqs.com'
+git config --global user.name 'Anilathmacloudeqs' 
+git config --global user.email 'anilathma@cloudeqs.com'
 git config pull.rebase false 
 git config --list
 git branch
@@ -27,6 +20,4 @@ $commitid = (git log -n 1 )[0].split(" ")[-1]
 
 Write-Host "commit id is $($commitid)"
 
-#echo "COMMIT_ID=$commitid" >> $GITHUB_ENV
-#echo "::set-output name=COMMIT_ID::$commitid"
 echo "COMMIT_ID=$commitid" >> $env:GITHUB_ENV
