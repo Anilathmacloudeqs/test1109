@@ -50,3 +50,4 @@ $TargetAfterMerge = (git log -n 1 )[0].split(" ")[-1]
 Write-Host "$($TargetBranch) branch is at commit ID $($TargetAfterMerge)"
 
 Write-Host "##vso[task.setvariable variable=commitid;]$($TargetAfterMerge)"
+Write-Host "Code from tag $SourceTag has been successfully merged into branch $TargetBranch."
