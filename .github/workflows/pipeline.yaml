@@ -32,11 +32,7 @@ jobs:
 
       - name: Merging repo
         run: |
-          pwsh -File ./mergerepo.ps1 `
-               -SourceTag ${{ inputs.Tag }} `
-               -TargetBranch prod `
-               -svc_repos_email anilathma@cloudeqs.com `
-               -svc_repos_username Anilathmacloudeqs
+          pwsh -File ./mergerepo.ps1 -SourceTag ${{ inputs.Tag }} `
         shell: pwsh
       
       - name: Printing commit ID  
