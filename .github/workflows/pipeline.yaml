@@ -16,7 +16,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: GetCommitId
         id: get_commit
@@ -26,7 +27,7 @@ jobs:
 
       - name: print commit id
         run: echo "COMMIT ID IS ${{ steps.get_commit.outputs.commit_id }}"
-        
+
       - name: Upload commit id artifact
         uses: actions/upload-artifact@v2
         with:
@@ -38,12 +39,14 @@ jobs:
     needs: release
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Download commit id artifact
         uses: actions/download-artifact@v2
         with:
           name: commit-id-artifact
-          path: ./test1109/.github/workflows # Specify the directory where you want to store the file
+          path: ./test1109/.github/workflows
 
       - name: Merging repo
         run: |
