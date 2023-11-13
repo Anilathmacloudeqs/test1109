@@ -33,7 +33,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
       - name: Merging repo
         run: |
           pwsh -File ./.github/workflows/getcommitid.ps1 -SourceTag ${{ inputs.Tag }}
