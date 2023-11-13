@@ -16,7 +16,7 @@ git pull origin $SourceTag --allow-unrelated-histories
 Write-Host "getting commit id for $($SourceTag)"
 git log -n 1 
 
-$commitid = (git log -n 1 )[0].split(" ")[-1]
+$commitid = (git log -n 1 ).split(" ")[-1]
 
 Write-Host "commit id is $($commitid)"
 
