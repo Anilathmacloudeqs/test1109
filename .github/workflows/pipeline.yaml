@@ -1,6 +1,4 @@
 name: Manual Python and PowerShell Workflows
-#env:
-#  NAME: 'Snyk Demo'
 
 on:
   workflow_dispatch:
@@ -11,15 +9,6 @@ on:
         type: string
 env:
   COMMIT_ID: ${{ github.sha }}
-  #COMMIT_ID: '1'
-  #SVC_MATILLION_USERNAME: ${{secrets.SVC_MATILLION_PASSWORD}}
-  #svc_matillion_password: 'test1234'
-  #Matillion_Project: 'CLOUDX_DEMO'
-  #Matillion_Group: 'TEST'
-  #Matillion_Version: 'v1.1'
-  #Matillion_Instance: '192.168.1.1'
-  #svc_repos_email: 'test@gmail.com'
-  #svc_repos_password: 'test1234'
   
   
 jobs:
@@ -36,17 +25,5 @@ jobs:
         shell: pwsh
      
       - name: print commit id  
-        #run: echo "COMMIT ID IS ${{env.COMMIT_ID}}"
-        #run: echo "COMMIT ID IS ${{ steps.generate_commit_id.outputs.COMMIT_ID }}"
         run: echo "COMMIT ID IS ${{ env.COMMIT_ID }}"
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.10'
-          
-      - name: Install dependencies
-        run: pip install requests==2.28.1  
 
-        
-      - name: Run Python script
-        run: python ./.github/workflows/hello.py
